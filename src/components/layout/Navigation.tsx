@@ -1,91 +1,152 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { motion, AnimatePresence } from 'framer-motion'
-import { FiHome, FiUser, FiCode, FiMail, FiChevronLeft } from 'react-icons/fi'
 import { useState } from 'react'
+import { FiMenu, FiX } from 'react-icons/fi'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const navItems = [
-  { href: '/', label: 'Home', icon: FiHome },
-  { href: '/about', label: 'About', icon: FiUser },
-  { href: '/projects', label: 'Projects', icon: FiCode },
-  { href: '/contact', label: 'Contact', icon: FiMail },
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/contact', label: 'Contact' },
 ]
 
 export default function Navigation() {
   const router = useRouter()
-  const [isExpanded, setIsExpanded] = useState(true)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <motion.nav 
-      initial={false}
-      animate={{ 
-        width: isExpanded ? 256 : 64,
-        transition: { duration: 0.3, ease: "easeInOut" }
-      }}
-      className="fixed left-0 top-0 h-screen bg-white/80 dark:bg-black/80 backdrop-blur-lg border-r border-gray-200 dark:border-gray-800 z-50 overflow-hidden"
-    >
-      <div className="flex flex-col h-full py-8 w-64">
-        <div className="px-6 mb-8 flex items-center justify-between">
-          <AnimatePresence mode="wait">
-            {isExpanded && (
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="text-xl font-semibold"
-              >
-                SA
-              </motion.span>
-            )}
-          </AnimatePresence>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
+    <>
+      <nav className="fixed top-0 left-0 right-0 h-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 z-50">
+        <div className="h-full max-w-7xl mx-auto px-6 flex items-center justify-between">
+          <Link 
+            href="/" 
+            className="text-xl font-semibold tracking-tight hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
           >
-            <motion.div
-              animate={{ rotate: isExpanded ? 0 : 180 }}
-              transition={{ duration: 0.3 }}
-            >
-              <FiChevronLeft size={20} />
-            </motion.div>
+            Stefan Anevski
+          </Link>
+          
+          {/* Desktop Navigation */}
+          <ul className="hidden md:flex items-center space-x-12">
+            {navItems.map(({ href, label }) => {
+              const isActive = router.pathname === href
+              return (
+                <li key={href}>
+                  <Link 
+                    href={href}
+                    className={`relative py-5 text-base tracking-wide font-medium transition-colors
+                      ${isActive 
+                        ? 'text-black dark:text-white' 
+                        : 'text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white'
+                      }`}
+                  >
+                    {label}
+                    {isActive && (
+                      <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-black dark:bg-white" />
+                    )}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+
+          {/* Mobile Menu Button */}
+          <motion.button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+            whileTap={{ scale: 0.95 }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={isMenuOpen ? 'close' : 'open'}
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+              </motion.div>
+            </AnimatePresence>
           </motion.button>
         </div>
-        
-        <ul className="flex-1 px-3">
-          {navItems.map(({ href, label, icon: Icon }) => {
-            const isActive = router.pathname === href
-            return (
-              <li key={href} className="mb-2">
-                <Link 
-                  href={href}
-                  className={`flex items-center px-3 py-3 rounded-lg transition-colors whitespace-nowrap
-                    ${isActive 
-                      ? 'bg-gray-100 dark:bg-gray-800 text-black dark:text-white' 
-                      : 'hover:bg-gray-50 dark:hover:bg-gray-900 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'
-                    }`}
-                >
-                  <Icon size={20} />
-                  <AnimatePresence mode="wait">
-                    {isExpanded && (
-                      <motion.span
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -10 }}
-                        transition={{ duration: 0.2 }}
-                        className="ml-4"
+
+        {/* Mobile Navigation */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ 
+                opacity: 1, 
+                y: 0,
+                transition: {
+                  duration: 0.2
+                }
+              }}
+              exit={{ 
+                opacity: 0,
+                y: -20,
+                transition: {
+                  duration: 0.2
+                }
+              }}
+              className="md:hidden absolute top-16 inset-x-4 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-lg overflow-hidden"
+            >
+              <motion.ul 
+                initial="closed"
+                animate="open"
+                exit="closed"
+                variants={{
+                  open: {
+                    transition: { staggerChildren: 0.07, delayChildren: 0.1 }
+                  },
+                  closed: {
+                    transition: { staggerChildren: 0.05, staggerDirection: -1 }
+                  }
+                }}
+                className="p-4 space-y-2"
+              >
+                {navItems.map(({ href, label }) => {
+                  const isActive = router.pathname === href
+                  return (
+                    <motion.li 
+                      key={href}
+                      variants={{
+                        open: {
+                          y: 0,
+                          opacity: 1,
+                          transition: {
+                            y: { stiffness: 1000, velocity: -100 }
+                          }
+                        },
+                        closed: {
+                          y: 20,
+                          opacity: 0,
+                          transition: {
+                            y: { stiffness: 1000 }
+                          }
+                        }
+                      }}
+                    >
+                      <Link 
+                        href={href}
+                        onClick={() => setIsMenuOpen(false)}
+                        className={`block px-4 py-3 rounded-lg transition-colors
+                          ${isActive 
+                            ? 'bg-gray-100 dark:bg-gray-800 text-black dark:text-white' 
+                            : 'hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white'
+                          }`}
                       >
                         {label}
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-    </motion.nav>
+                      </Link>
+                    </motion.li>
+                  )
+                })}
+              </motion.ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+      <div className="h-16" />
+    </>
   )
 } 
