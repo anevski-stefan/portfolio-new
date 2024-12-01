@@ -27,10 +27,8 @@ export default function Layout({ children }: LayoutProps) {
       <div className="min-h-screen">
         <AnimatedBackground />
         <Navigation />
-        <div className="transition-all duration-300 min-h-screen">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {children}
-          </div>
+        <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-6">
+        {children}
         </div>
       </div>
     </>
