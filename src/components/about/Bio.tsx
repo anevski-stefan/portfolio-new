@@ -67,7 +67,6 @@ export default function Bio() {
       <h3 className="text-2xl font-bold mb-6">Skills & Technologies</h3>
       
       <div className="flex flex-wrap gap-3 justify-start mb-8">
-        {/* Frontend - Purple */}
         {skills.frontend.map((skill, index) => (
           <motion.span
             key={skill.name}
@@ -81,7 +80,6 @@ export default function Bio() {
           </motion.span>
         ))}
 
-        {/* Backend - Blue */}
         {skills.backend.map((skill, index) => (
           <motion.span
             key={skill.name}
@@ -95,7 +93,6 @@ export default function Bio() {
           </motion.span>
         ))}
 
-        {/* Databases - Green */}
         {skills.databases.map((skill, index) => (
           <motion.span
             key={skill.name}
@@ -109,7 +106,6 @@ export default function Bio() {
           </motion.span>
         ))}
 
-        {/* Tools & Platforms - Orange */}
         {[...skills.tools, ...skills.platforms].map((skill, index) => (
           <motion.span
             key={skill.name}
@@ -123,7 +119,6 @@ export default function Bio() {
           </motion.span>
         ))}
 
-        {/* Soft Skills - Pink */}
         {skills.softSkills.map((skill, index) => (
           <motion.span
             key={skill.name}

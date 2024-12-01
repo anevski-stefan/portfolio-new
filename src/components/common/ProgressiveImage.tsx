@@ -19,11 +19,10 @@ export default function ProgressiveImage({
 }: ProgressiveImageProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [currentSrc, setCurrentSrc] = useState(
-    `${src}?w=40&q=10` // Low quality placeholder
+    `${src}?w=40&q=10` 
   )
 
   useEffect(() => {
-    // Load high quality image
     const img = new window.Image()
     img.src = src
     img.onload = () => {

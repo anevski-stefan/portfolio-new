@@ -1,7 +1,6 @@
 import type { AppProps } from 'next/app'
 import { AnimatePresence } from 'framer-motion'
 import Layout from '@/components/layout/Layout'
-import SEO from '@/components/layout/SEO'
 import PageTransition from '@/components/layout/PageTransition'
 import { ThemeProvider } from '@/context/ThemeContext'
 import { useRouter } from 'next/router'
@@ -20,7 +19,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeProvider>
-      <SEO />
       <Layout>
         <AnimatePresence mode="wait">
           <PageTransition key={router.asPath}>

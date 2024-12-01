@@ -26,6 +26,7 @@ export default function ContactForm() {
           from_name: formData.name,
           reply_to: formData.email,
           message: formData.message,
+          subject: `Portfolio Contact: Message from ${formData.name} (${formData.email})`
         },
         emailConfig.publicKey
       )

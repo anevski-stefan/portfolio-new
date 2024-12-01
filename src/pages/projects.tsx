@@ -2,6 +2,7 @@ import LazyLoad from '@/components/common/LazyLoad'
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion'
 import { FiGithub, FiExternalLink, FiCode } from 'react-icons/fi'
 import { MouseEvent } from 'react'
+import SEO from '@/components/layout/SEO'
 
 interface Project {
   title: string
@@ -202,26 +203,29 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
 export default function Projects() {
   return (
-    <section className="py-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-12"
-      >
-        <h1 className="text-3xl font-bold mb-4">Featured Projects</h1>
-        <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          A showcase of my journey in software development, featuring full-stack applications
-          and innovative solutions.
-        </p>
-      </motion.div>
+    <>
+      <SEO title="Projects - Stefan Anevski" />
+      <section className="py-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-12"
+        >
+          <h1 className="text-3xl font-bold mb-4">Featured Projects</h1>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            A showcase of my journey in software development, featuring full-stack applications
+            and innovative solutions.
+          </p>
+        </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {projects.featured.map((project) => (
-          <LazyLoad key={project.title}>
-            <ProjectCard project={project} />
-          </LazyLoad>
-        ))}
-      </div>
-    </section>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {projects.featured.map((project) => (
+            <LazyLoad key={project.title}>
+              <ProjectCard project={project} />
+            </LazyLoad>
+          ))}
+        </div>
+      </section>
+    </>
   )
 } 
