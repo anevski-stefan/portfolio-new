@@ -32,7 +32,7 @@ export default function ContactForm() {
 
       setStatus('success')
       setFormData({ name: '', email: '', message: '' })
-    } catch (error) {
+    } catch {
       setStatus('error')
     } finally {
       setIsSubmitting(false)

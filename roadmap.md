@@ -30,15 +30,12 @@
 - Add a section with:  
   - A brief bio introducing yourself.  
   - A list of your skills and expertise.  
-  - A button to download your CV.  
 
 ### **4. Contact Section**  
 - Create a simple contact form with:  
   - Name  
   - Email  
   - Message  
-- Add links to your social media profiles.  
-
 ---
 
 ## **Phase 4: Advanced Features**  

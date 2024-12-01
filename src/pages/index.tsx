@@ -22,7 +22,7 @@ export default function Home() {
     } else if (!showSecondLine) {
       setTimeout(() => setShowSecondLine(true), 500)
     }
-  }, [index1])
+  }, [index1, line1, showSecondLine])
 
   useEffect(() => {
     if (showSecondLine && index2 < line2.length) {

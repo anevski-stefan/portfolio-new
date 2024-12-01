@@ -6,7 +6,7 @@ export function useParallax(value: MotionValue<number>, distance: number) {
 }
 
 export function useParallaxScroll() {
-  const [elementTop, setElementTop] = useState(0)
+  const [elementTop, _setElementTop] = useState(0)
   const [clientHeight, setClientHeight] = useState(0)
   const { scrollY } = useScroll()
 

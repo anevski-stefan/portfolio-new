@@ -3,7 +3,17 @@ import { motion, useMotionTemplate, useMotionValue } from 'framer-motion'
 import { FiGithub, FiExternalLink, FiCode } from 'react-icons/fi'
 import { MouseEvent } from 'react'
 
-const projects = {
+interface Project {
+  title: string
+  description: string
+  image: string
+  demoLink: string
+  githubLink: string
+  tags: string[]
+  highlights: string[]
+}
+
+const projects: { featured: Project[] } = {
   featured: [
     {
       title: 'Green Zone Recycling App',
@@ -93,12 +103,12 @@ const projects = {
   ]
 }
 
-const ProjectCard = ({ project }: { project: any }) => {
+const ProjectCard = ({ project }: { project: Project }) => {
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
   function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
-    const { left, top, width, height } = currentTarget.getBoundingClientRect()
+    const { left, top } = currentTarget.getBoundingClientRect()
     mouseX.set(clientX - left)
     mouseY.set(clientY - top)
   }
