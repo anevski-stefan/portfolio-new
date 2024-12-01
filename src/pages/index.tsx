@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
+import { FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi'
 
 export default function Home() {
   const [text1, setText1] = useState('')
@@ -40,10 +40,10 @@ export default function Home() {
     <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex flex-col items-center justify-center min-h-[80vh]"
+      className="flex flex-col items-center justify-center h-[calc(100vh-64px)] px-4"
     >
-      <div className="text-center max-w-4xl mx-auto px-4">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light mb-6 tracking-tight text-gray-900 dark:text-gray-100">
+      <div className="text-center w-full max-w-4xl mx-auto">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light mb-4 sm:mb-6 tracking-tight text-gray-900 dark:text-gray-100">
           {text1}
           {index1 === line1.length ? (
             <span className="text-indigo-600 dark:text-indigo-400">.</span>
@@ -64,7 +64,7 @@ export default function Home() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
-              className="text-xl sm:text-2xl md:text-3xl font-light tracking-wide text-gray-600 dark:text-gray-400"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light tracking-wide text-gray-600 dark:text-gray-400"
             >
               {text2}
               <motion.span
@@ -83,7 +83,7 @@ export default function Home() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="mt-12 flex flex-wrap justify-center gap-6"
+            className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6"
           >
             <motion.a
               href="https://github.com/yourusername"
@@ -91,7 +91,7 @@ export default function Home() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-8 py-3 rounded-lg bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
             >
               <FiGithub className="text-xl" />
               <span>GitHub</span>
@@ -103,20 +103,22 @@ export default function Home() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-8 py-3 rounded-lg bg-[#0077B5] hover:bg-[#006399] text-white transition-colors"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg bg-[#0077B5] hover:bg-[#006399] text-white transition-colors"
             >
               <FiLinkedin className="text-xl" />
               <span>LinkedIn</span>
             </motion.a>
 
             <motion.a
-              href="mailto:your.email@example.com"
+              href="https://twitter.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-8 py-3 rounded-lg border-2 border-gray-900 dark:border-gray-100 text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg bg-[#1DA1F2] hover:bg-[#1a8cd8] text-white transition-colors"
             >
-              <FiMail className="text-xl" />
-              <span>Contact</span>
+              <FiTwitter className="text-xl" />
+              <span>Twitter</span>
             </motion.a>
           </motion.div>
         )}

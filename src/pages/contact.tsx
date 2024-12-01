@@ -1,5 +1,4 @@
 import ContactForm from '@/components/contact/ContactForm'
-import SocialLinks from '@/components/contact/SocialLinks'
 import { motion } from 'framer-motion'
 
 export default function Contact() {
@@ -17,7 +16,6 @@ export default function Contact() {
       </motion.div>
 
       <ContactForm />
-      <SocialLinks />
     </section>
   )
 } 
