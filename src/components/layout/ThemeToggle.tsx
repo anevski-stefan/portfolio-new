@@ -1,19 +1,9 @@
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FiSun, FiMoon } from 'react-icons/fi'
+import { useTheme } from '@/context/ThemeContext'
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false)
-
-  useEffect(() => {
-    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-    setIsDark(isDarkMode)
-  }, [])
-
-  const toggleTheme = () => {
-    setIsDark(!isDark)
-    document.documentElement.classList.toggle('dark')
-  }
+  const { isDark, toggleTheme } = useTheme()
 
   return (
     <motion.button

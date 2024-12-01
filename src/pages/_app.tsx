@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion'
 import Layout from '@/components/layout/Layout'
 import SEO from '@/components/layout/SEO'
 import PageTransition from '@/components/layout/PageTransition'
+import { ThemeProvider } from '@/context/ThemeContext'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import '../styles/globals.css'
@@ -18,7 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
   if (isLoading) return null
 
   return (
-    <>
+    <ThemeProvider>
       <SEO />
       <Layout>
         <AnimatePresence mode="wait">
@@ -27,6 +28,6 @@ export default function App({ Component, pageProps }: AppProps) {
           </PageTransition>
         </AnimatePresence>
       </Layout>
-    </>
+    </ThemeProvider>
   )
 }

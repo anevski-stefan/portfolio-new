@@ -17,11 +17,11 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 h-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 z-50">
+      <nav className="fixed top-0 left-0 right-0 h-16 bg-background dark:bg-[#171717] border-b border-foreground/10 dark:border-[#171717] z-50">
         <div className="h-full max-w-7xl mx-auto px-6 flex items-center justify-between">
           <Link 
             href="/" 
-            className="text-xl font-semibold tracking-tight hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+            className="text-xl font-semibold tracking-tight text-foreground hover:opacity-80 transition-opacity"
           >
             Stefan Anevski
           </Link>
@@ -36,13 +36,13 @@ export default function Navigation() {
                     href={href}
                     className={`relative py-5 text-base tracking-wide font-medium transition-colors
                       ${isActive 
-                        ? 'text-black dark:text-white' 
-                        : 'text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white'
+                        ? 'text-foreground' 
+                        : 'text-foreground/60 hover:text-foreground'
                       }`}
                   >
                     {label}
                     {isActive && (
-                      <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-black dark:bg-white" />
+                      <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-foreground" />
                     )}
                   </Link>
                 </li>
@@ -53,7 +53,7 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <motion.button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+            className="md:hidden p-2 hover:bg-foreground/5 rounded-lg transition-colors"
             whileTap={{ scale: 0.95 }}
           >
             <AnimatePresence mode="wait">
@@ -63,6 +63,7 @@ export default function Navigation() {
                 animate={{ rotate: 0, opacity: 1 }}
                 exit={{ rotate: 90, opacity: 0 }}
                 transition={{ duration: 0.2 }}
+                className="text-foreground"
               >
                 {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
               </motion.div>
@@ -89,7 +90,7 @@ export default function Navigation() {
                   duration: 0.2
                 }
               }}
-              className="md:hidden absolute top-16 inset-x-4 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-lg overflow-hidden"
+              className="md:hidden absolute top-16 inset-x-4 bg-background border border-foreground/10 rounded-2xl shadow-lg overflow-hidden"
             >
               <motion.ul 
                 initial="closed"
@@ -132,8 +133,8 @@ export default function Navigation() {
                         onClick={() => setIsMenuOpen(false)}
                         className={`block px-4 py-3 rounded-lg transition-colors
                           ${isActive 
-                            ? 'bg-gray-100 dark:bg-gray-800 text-black dark:text-white' 
-                            : 'hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white'
+                            ? 'bg-foreground/5 text-foreground' 
+                            : 'hover:bg-foreground/5 text-foreground/60 hover:text-foreground'
                           }`}
                       >
                         {label}
@@ -146,7 +147,6 @@ export default function Navigation() {
           )}
         </AnimatePresence>
       </nav>
-      <div className="h-16" />
     </>
   )
 } 
