@@ -16,6 +16,7 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-y: scroll;
 }
 
 @layer components {
@@ -31,4 +32,9 @@ body {
     content: '';
     @apply absolute bottom-0 left-0 w-full h-0.5 bg-foreground;
   }
+}
+
+/* Add these rules to prevent layout shift */
+html {
+  scrollbar-gutter: stable;
 }
