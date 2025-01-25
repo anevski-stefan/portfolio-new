@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion'
-import { FiBriefcase, FiBook, FiAward, FiCode } from 'react-icons/fi'
+import Image from 'next/image'
 
 interface TimelineEvent {
   date: string
   title: string
   subtitle: string
   description: string
-  icon: typeof FiBriefcase | typeof FiBook | typeof FiAward | typeof FiCode
+  logo: string
   category: 'work' | 'education' | 'achievement'
 }
 
@@ -17,7 +17,7 @@ const timelineEvents = {
       title: "One Inside",
       subtitle: "Software Engineer",
       description: "Working on Solid.js migration, TypeScript development, and international team collaboration",
-      icon: FiBriefcase,
+      logo: "/images/companies/vass.jpg",
       category: 'work' as const
     },
     {
@@ -25,7 +25,7 @@ const timelineEvents = {
       title: "One Inside",
       subtitle: "Front-End Developer Internship",
       description: "Gained practical experience in front-end development",
-      icon: FiBriefcase,
+      logo: "/images/companies/vass.jpg",
       category: 'work' as const
     }
   ],
@@ -35,7 +35,7 @@ const timelineEvents = {
       title: "Zero To Mastery Academy",
       subtitle: "Software Engineer",
       description: "Advancing software engineering skills through comprehensive training",
-      icon: FiBook,
+      logo: "/images/companies/ztm.jpg",
       category: 'education' as const
     },
     {
@@ -43,7 +43,7 @@ const timelineEvents = {
       title: "Faculty of Computer Science and Engineering",
       subtitle: "Bachelor of Engineering",
       description: "Studying Information Sciences and Computer Engineering",
-      icon: FiBook,
+      logo: "/images/companies/finki.jpg",
       category: 'education' as const
     }
   ],
@@ -53,7 +53,7 @@ const timelineEvents = {
       title: "Hacktoberfest 2023",
       subtitle: "Open Source Contribution",
       description: "Successfully completed 4 pull requests and earned digital recognition",
-      icon: FiCode,
+      logo: "/images/companies/hacktoberfest.png",
       category: 'achievement' as const
     },
     {
@@ -61,7 +61,7 @@ const timelineEvents = {
       title: "Mega Hackathon 2023",
       subtitle: "NextBook Project",
       description: "Led team development of NextBook, improving application performance by 10%",
-      icon: FiAward,
+      logo: "/images/companies/mega-hackathon.png",
       category: 'achievement' as const
     }
   ]
@@ -85,19 +85,23 @@ const TimelineSection = ({ title, events }: { title: string, events: TimelineEve
           )}
           
           <motion.div
-            whileHover={{ scale: 1.2 }}
-            className={`relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-white dark:bg-gray-800 border-4 flex items-center justify-center
+            whileHover={{ scale: 1.1 }}
+            className={`relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-white dark:bg-gray-800 border-4 overflow-hidden flex items-center justify-center
               ${event.category === 'work' ? 'border-blue-500' :
                 event.category === 'education' ? 'border-green-500' :
                 'border-yellow-500'
               }`}
           >
-            <event.icon className={`text-xl
-              ${event.category === 'work' ? 'text-blue-500' :
-                event.category === 'education' ? 'text-green-500' :
-                'text-yellow-500'
-              }`}
-            />
+            <div className="relative w-8 h-8 rounded-full overflow-hidden">
+              <Image
+                src={event.logo}
+                alt={`${event.title} logo`}
+                fill
+                className="object-cover"
+                sizes="32px"
+                unoptimized
+              />
+            </div>
           </motion.div>
 
           <div className="flex-grow pb-8">

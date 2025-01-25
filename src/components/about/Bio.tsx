@@ -14,10 +14,13 @@ const skills: { [key: string]: Skill[] } = {
     { name: 'CSS', icon: FiLayout },
     { name: 'JavaScript', icon: FiCode },
     { name: 'React.js', icon: FiCode },
+    { name: 'React Native', icon: FiCode },
     { name: 'Next.js', icon: FiCode },
-    { name: 'Solid.js', icon: FiCode },
     { name: 'Nuxt.js', icon: FiCode },
+    { name: 'Solid.js', icon: FiCode },
     { name: 'Tailwind CSS', icon: FiLayout },
+    { name: 'Bootstrap', icon: FiLayout },
+    { name: 'Handlebars', icon: FiCode },
   ],
   backend: [
     { name: 'Java', icon: FiServer },
@@ -26,6 +29,7 @@ const skills: { [key: string]: Skill[] } = {
     { name: 'PHP', icon: FiServer },
     { name: 'C/C++', icon: FiServer },
     { name: 'AEM', icon: FiServer },
+    { name: 'Strapi', icon: FiServer },
   ],
   databases: [
     { name: 'MySQL', icon: FiDatabase },
@@ -36,12 +40,14 @@ const skills: { [key: string]: Skill[] } = {
     { name: 'GitHub', icon: FiGitBranch },
     { name: 'GitLab', icon: FiGitBranch },
     { name: 'Docker', icon: FiTool },
+    { name: 'JUnit', icon: FiTool },
   ],
   platforms: [
     { name: 'Netlify', icon: FiMonitor },
     { name: 'Vercel', icon: FiMonitor },
     { name: 'Railway', icon: FiMonitor },
     { name: 'Render', icon: FiMonitor },
+    { name: 'Cloud', icon: FiMonitor },
   ],
   softSkills: [
     { name: 'Agile', icon: FiUsers },
