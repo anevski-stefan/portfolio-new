@@ -100,6 +100,126 @@ const projects: { featured: Project[] } = {
         'Managed project using Jira',
         'Handled full-stack development responsibilities'
       ]
+    },
+    {
+      title: 'CodeQuest - GitHub Contribution App',
+      description: 'A modern web application that helps developers discover, track, and contribute to GitHub projects, featuring OAuth authentication and real-time analytics.',
+      image: '/projects/codequest.jpg',
+      demoLink: 'https://your-demo-link',
+      githubLink: 'https://github.com/anevski-stefan/codequest',
+      tags: ['React', 'TypeScript', 'Node.js', 'Express', 'Tailwind CSS', 'Redux', 'GitHub OAuth', 'Chart.js'],
+      highlights: [
+        'Implemented secure GitHub OAuth2 authentication flow',
+        'Built real-time contributor analytics with Chart.js visualization',
+        'Optimized performance with memory caching and ETag support',
+        'Integrated rate limiting and security best practices',
+        'Designed responsive UI with dark mode support using Tailwind CSS'
+      ]
+    },
+    {
+      title: 'YouTube Video Transcriber',
+      description: 'A web application that transcribes YouTube videos using YouTube\'s captions or Whisper AI for speech-to-text conversion, featuring automatic fallback and intelligent file management.',
+      image: '/projects/youtube-transcriber.jpg',
+      demoLink: 'https://your-demo-link',
+      githubLink: 'https://github.com/anevski-stefan/youtube-transcriber',
+      tags: ['Python', 'FastAPI', 'Whisper AI', 'FFmpeg', 'HTML', 'CSS', 'JavaScript', 'OpenAI'],
+      highlights: [
+        'Built dual-mode transcription system with automatic fallback',
+        'Integrated OpenAI Whisper model for speech-to-text conversion',
+        'Implemented intelligent temporary file management system',
+        'Designed responsive UI with modern CSS flexbox',
+        'Developed robust error handling and recovery system'
+      ]
+    },
+    {
+      title: 'BookHive - Library Management System',
+      description: 'A modern library management system with real-time notifications, barcode scanning, and comprehensive book tracking capabilities.',
+      image: '/projects/bookhive.jpg',
+      demoLink: 'https://your-demo-link',
+      githubLink: 'https://github.com/anevski-stefan/library-app',
+      tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Redux', 'WebSocket', 'TailwindCSS', 'Express'],
+      highlights: [
+        'Implemented real-time notifications using WebSocket',
+        'Built role-based access control with JWT authentication',
+        'Integrated barcode/QR scanning for efficient book management',
+        'Developed automated due date reminder system',
+        'Created comprehensive book tracking and request system'
+      ]
+    },
+    {
+      title: 'Tab Group Saver - Chrome Extension',
+      description: 'A productivity-focused Chrome extension that helps users organize and manage browser tabs efficiently through customizable groups and quick actions.',
+      image: '/projects/tab-saver.jpg',
+      demoLink: 'https://chrome.google.com/webstore/detail/your-extension-id',
+      githubLink: 'https://github.com/anevski-stefan/tab-manager-extension',
+      tags: ['JavaScript', 'Chrome API', 'HTML', 'CSS', 'Chrome Storage', 'Manifest V3'],
+      highlights: [
+        'Built custom tab management system with group functionality',
+        'Implemented Chrome Storage Sync for seamless data persistence',
+        'Created context menu integration for quick tab actions',
+        'Designed responsive popup interface with collapsible groups',
+        'Developed selective tab saving with batch operations'
+      ]
+    },
+    {
+      title: 'Dev.to Article Scraper',
+      description: 'A full-stack web application that scrapes and displays articles from dev.to based on user queries, featuring real-time status updates and persistent storage.',
+      image: '/projects/devto-scraper.jpg',
+      demoLink: 'https://your-demo-link',
+      githubLink: 'https://github.com/anevski-stefan/dev-scraper',
+      tags: ['React', 'Vite', 'Flask', 'Playwright', 'Tailwind CSS', 'Python', 'Axios', 'Gunicorn'],
+      highlights: [
+        'Built real-time article scraping system with status updates',
+        'Implemented persistent storage for search history',
+        'Created responsive UI with Tailwind CSS and toast notifications',
+        'Developed robust error handling and loading states',
+        'Integrated Playwright for reliable web scraping'
+      ]
+    },
+    {
+      title: 'Weather Forecast Application',
+      description: 'A modern, responsive weather application providing real-time forecasts, air quality monitoring, and detailed weather metrics using OpenWeatherMap API.',
+      image: '/projects/weather-app.jpg',
+      demoLink: 'https://your-demo-link',
+      githubLink: 'https://github.com/anevski-stefan/weatherapp',
+      tags: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'OpenWeatherMap API', 'Axios'],
+      highlights: [
+        'Built real-time weather tracking with 5-day forecasts',
+        'Implemented air quality and UV index monitoring',
+        'Created city search with autocomplete functionality',
+        'Designed responsive UI with animated weather transitions',
+        'Developed multi-location support with saved cities'
+      ]
+    },
+    {
+      title: 'Discord Weather Forecast Bot',
+      description: 'A feature-rich Discord bot that provides real-time weather forecasts and astronomical data using WeatherAPI, built with Node.js and Discord.js.',
+      image: '/projects/discord-bot.jpg',
+      demoLink: 'https://discord.com/oauth2/authorize?client_id=your-client-id&scope=bot',
+      githubLink: 'https://github.com/anevski-stefan/discord-bot',
+      tags: ['Node.js', 'Discord.js', 'WeatherAPI', 'JavaScript', 'REST API', 'dotenv'],
+      highlights: [
+        'Implemented weather forecast commands with unit conversion',
+        'Built astronomical data tracking functionality',
+        'Created intuitive slash command system',
+        'Developed real-time bot status monitoring',
+        'Integrated secure environment configuration'
+      ]
+    },
+    {
+      title: 'Local LLM Chatbot',
+      description: 'A locally-running AI chatbot that leverages CTransformers for inference and Chainlit for the interface, featuring multiple LLM models and conversational memory.',
+      image: '/projects/llm-chatbot.jpg',
+      demoLink: 'https://your-demo-link',
+      githubLink: 'https://github.com/anevski-stefan/llm-chat',
+      tags: ['Python', 'CTransformers', 'Chainlit', 'LangChain', 'Hugging Face', 'LLM'],
+      highlights: [
+        'Built local LLM inference system with multiple model support',
+        'Implemented streaming responses and conversational memory',
+        'Created clean chat interface with real-time updates',
+        'Developed model switching between Orca Mini and Llama2',
+        'Integrated VS Code development environment with linting'
+      ]
     }
   ]
 }
