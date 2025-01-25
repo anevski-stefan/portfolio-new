@@ -6,7 +6,7 @@ import SEO from '@/components/layout/SEO'
 export default function Home() {
   const [text1, setText1] = useState('')
   const [text2, setText2] = useState('')
-  const line1 = "Hello, I'm Stefan Anevski"
+  const line1 = "Hello, I'm Stefan"
   const line2 = "Full Stack Software Engineer"
   const [index1, setIndex1] = useState(0)
   const [index2, setIndex2] = useState(0)
@@ -14,28 +14,36 @@ export default function Home() {
   const [showButtons, setShowButtons] = useState(false)
 
   useEffect(() => {
-    if (index1 < line1.length) {
-      const timeout = setTimeout(() => {
-        setText1(current => current + line1.charAt(index1))
+    const timeout = setTimeout(() => {
+      if (index1 < line1.length) {
+        setText1(text1 + line1[index1])
         setIndex1(index1 + 1)
-      }, 85)
-      return () => clearTimeout(timeout)
-    } else if (!showSecondLine) {
-      setTimeout(() => setShowSecondLine(true), 500)
-    }
-  }, [index1, line1, showSecondLine])
+      } else {
+        setShowSecondLine(true)
+      }
+    }, 80)
+
+    return () => clearTimeout(timeout)
+  }, [index1, text1])
 
   useEffect(() => {
-    if (showSecondLine && index2 < line2.length) {
-      const timeout = setTimeout(() => {
-        setText2(current => current + line2.charAt(index2))
+    if (!showSecondLine) return
+
+    const timeout = setTimeout(() => {
+      if (index2 < line2.length) {
+        setText2(text2 + line2[index2])
         setIndex2(index2 + 1)
-      }, 85)
-      return () => clearTimeout(timeout)
-    } else if (index2 === line2.length) {
+      }
+    }, 60)
+
+    return () => clearTimeout(timeout)
+  }, [index2, text2, showSecondLine])
+
+  useEffect(() => {
+    if (showSecondLine && index2 === line2.length) {
       setTimeout(() => setShowButtons(true), 500)
     }
-  }, [index2, showSecondLine])
+  }, [showSecondLine, index2])
 
   return (
     <>
@@ -73,7 +81,7 @@ export default function Home() {
                 <motion.span
                   animate={{ opacity: [1, 0] }}
                   transition={{ duration: 0.7, repeat: Infinity, ease: 'easeInOut' }}
-                  className="inline-block ml-1 -translate-y-1 text-indigo-600 dark:text-indigo-400"
+                  className="inline-block ml-1 text-indigo-600 dark:text-indigo-400"
                 >
                   |
                 </motion.span>
