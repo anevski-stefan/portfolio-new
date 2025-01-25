@@ -79,13 +79,12 @@ yarn dev
 
 ```
 src/
-├── components/     # React components
+├── components/    # React components
 ├── pages/         # Next.js pages
 ├── styles/        # Global styles
 ├── utils/         # Utility functions
 ├── hooks/         # Custom React hooks
-├── context/       # React Context providers
-└── __tests__/     # Test files
+└── context/       # React Context providers
 ```
 
 ## 🧪 Testing
@@ -103,10 +102,6 @@ The portfolio is fully responsive and optimized for:
 - Tablets
 - Desktop screens
 - Large displays
-
-## 🚀 Deployment
-
-The application is deployed on Vercel and accessible at [anevskistefan.xyz](https://anevskistefan.xyz).
 
 **Stefan Anevski**
 - Website: [anevskistefan.xyz](https://anevskistefan.xyz)
