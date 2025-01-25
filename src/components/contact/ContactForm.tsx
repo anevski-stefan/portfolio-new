@@ -1,22 +1,57 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FiMail, FiUser, FiSend } from 'react-icons/fi'
 import emailjs from '@emailjs/browser'
 import { emailConfig } from '@/utils/email'
 
+const MAX_SUBMISSIONS = 10; // Maximum allowed submissions
+const TIME_FRAME = 60 * 60 * 1000; // 1 hour in milliseconds
+
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
+    honeypot: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [isRateLimited, setIsRateLimited] = useState(false)
+
+  useEffect(() => {
+    // Check local storage for submission data
+    const submissionData: number[] = JSON.parse(localStorage.getItem('submissionData') || '[]');
+    const now = Date.now();
+
+    // Filter out submissions that are older than the time frame
+    const recentSubmissions = submissionData.filter((timestamp: number) => now - timestamp < TIME_FRAME);
+
+    // Update local storage with recent submissions
+    localStorage.setItem('submissionData', JSON.stringify(recentSubmissions));
+
+    // Check if the user is rate-limited
+    if (recentSubmissions.length >= MAX_SUBMISSIONS) {
+      setIsRateLimited(true);
+      // Disable the button for 1 hour
+      setTimeout(() => setIsRateLimited(false), TIME_FRAME);
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (isRateLimited) {
+      alert('You have reached the maximum number of submissions. Please try again later.');
+      return;
+    }
+
     setIsSubmitting(true)
     setStatus('idle')
+
+    if (formData.honeypot) {
+      setIsSubmitting(false)
+      return;
+    }
 
     try {
       await emailjs.send(
@@ -32,11 +67,16 @@ export default function ContactForm() {
       )
 
       setStatus('success')
-      setFormData({ name: '', email: '', message: '' })
+      setFormData({ name: '', email: '', message: '', honeypot: '' })
+
+      // Update local storage with the new submission timestamp
+      const submissionData: number[] = JSON.parse(localStorage.getItem('submissionData') || '[]');
+      submissionData.push(Date.now());
+      localStorage.setItem('submissionData', JSON.stringify(submissionData));
     } catch {
-      setStatus('error')
+      setStatus('error');
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
   }
 
@@ -102,19 +142,12 @@ export default function ContactForm() {
 
       <motion.button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || isRateLimited}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         className="w-full p-3 rounded-lg bg-foreground text-background flex items-center justify-center gap-2 disabled:opacity-50"
       >
-        {isSubmitting ? (
-          'Sending...'
-        ) : (
-          <>
-            <FiSend />
-            Send Message
-          </>
-        )}
+        {isSubmitting ? 'Sending...' : <><FiSend /> Send Message</>}
       </motion.button>
     </motion.form>
   )

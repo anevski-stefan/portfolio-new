@@ -35,8 +35,9 @@ A modern, responsive portfolio website built with Next.js, featuring server-side
 
 1. Clone the repository and switch to the development branch:
 ```bash
-git clone https://github.com/anevski-stefan/portfolio.git
-cd portfolio
+git clone https://github.com/anevski-stefan/portfolio-new.git
+
+cd portfolio-new
 git checkout develop  # Development happens on the develop branch
 ```
 
