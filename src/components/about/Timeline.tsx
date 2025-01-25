@@ -16,7 +16,11 @@ const timelineEvents = {
       date: "Sep 2023 - Present",
       title: "One Inside",
       subtitle: "Software Engineer",
-      description: "Working on Solid.js migration, TypeScript development, and international team collaboration",
+      description: `• Migrating our front-end setup to Solid.js, harnessing its flexibility and speed to create a better user experience.
+
+• Working closely with a diverse team spread across different countries focusing on clear communication and understanding of each other's cultures to make sure our projects run smoothly.
+
+• Mastering TypeScript, Handlebars, and SCSS to ensure our code is strong, flexible, and easy to maintain.`,
       logo: "/images/companies/vass.jpg",
       category: 'work' as const
     },
@@ -52,15 +56,39 @@ const timelineEvents = {
       date: "Oct 2023",
       title: "Hacktoberfest 2023",
       subtitle: "Open Source Contribution",
-      description: "Successfully completed 4 pull requests and earned digital recognition",
+      description: `• Participated in 2023 hactoberfest and succeeded to create 4 pull request to complete this event
+• A tree was planted with my name and also i get rewarded with a digital kit`,
       logo: "/images/companies/hacktoberfest.png",
+      category: 'achievement' as const
+    },
+    {
+      date: "Mar 2023 - Present",
+      title: "Chingu",
+      subtitle: "Web Developer",
+      description: `• Applying agile methodologies to manage the project and ensure timely delivery.
+• Regularly communicating with team members to discuss progress, identify issues, and brainstorm solutions.
+• Participating in regular code reviews with which we are ensuring that our code base is up to day without errors`,
+      logo: "/images/companies/chingu.jpg",
+      category: 'achievement' as const
+    },
+    {
+      date: "Feb 2023",
+      title: "Learn It Global Hackathon",
+      subtitle: "Software Engineer, Team Lead",
+      description: `• We had challenges with integrating authentication and authorization system using spring security but at the end we successfully managed to do that
+• We overcame the problem we had with hosting the application online(establishing the connection between back-end and database)
+• Did code reviews to the code from the other team members ensuring good and consistent code
+• Was leading a team of three other team members, was creating and managing tickets in Jira for staying up to date with our process`,
+      logo: "/images/companies/learn-it.png",
       category: 'achievement' as const
     },
     {
       date: "Apr 2023",
       title: "Mega Hackathon 2023",
-      subtitle: "NextBook Project",
-      description: "Led team development of NextBook, improving application performance by 10%",
+      subtitle: "Software Engineer, Team Lead",
+      description: `• Overcame the challenge of integrating the front-end with the back-end by working collaboratively with my team members to connect React.js to Spring Boot
+• Overcame the additional challenge of coordinating tasks and communications across different time zones through clear and proactive communication channels, ensuring efficient progress throughout the project
+• Enhanced application performance by 10% through proactive module updates and consistent optimization`,
       logo: "/images/companies/mega-hackathon.png",
       category: 'achievement' as const
     }
@@ -108,7 +136,7 @@ const TimelineSection = ({ title, events }: { title: string, events: TimelineEve
             <span className="text-sm text-gray-500 dark:text-gray-400">{event.date}</span>
             <h3 className="text-xl font-semibold mt-1">{event.title}</h3>
             <p className="text-indigo-600 dark:text-indigo-400">{event.subtitle}</p>
-            <p className="text-gray-600 dark:text-gray-300 mt-2">{event.description}</p>
+            <p className="text-gray-600 dark:text-gray-300 mt-2 whitespace-pre-line">{event.description}</p>
           </div>
         </motion.div>
       ))}
