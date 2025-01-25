@@ -1,8 +1,9 @@
 import LazyLoad from '@/components/common/LazyLoad'
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion'
 import { FiGithub, FiExternalLink, FiCode } from 'react-icons/fi'
-import { MouseEvent } from 'react'
+import { MouseEvent, useState, useMemo } from 'react'
 import SEO from '@/components/layout/SEO'
+import FilterBar from '@/components/projects/FilterBar'
 
 interface Project {
   title: string
@@ -321,7 +322,45 @@ const ProjectCard = ({ project }: { project: Project }) => {
   )
 }
 
+type FilterCategory = 'all' | 'web' | 'mobile' | 'ai' | 'tools'
+
 export default function Projects() {
+  const [category, setCategory] = useState<FilterCategory>('all')
+
+  // Filter projects based on main categories
+  const filteredProjects = useMemo(() => {
+    return projects.featured.filter(project => {
+      if (category === 'all') return true;
+      
+      // Simple category matching based on project type
+      switch (category) {
+        case 'web':
+          return project.title.toLowerCase().includes('app') || 
+                 project.description.toLowerCase().includes('web') ||
+                 project.tags.some(tag => ['React', 'Next.js', 'Vue', 'Angular'].includes(tag));
+        case 'mobile':
+          return project.title.toLowerCase().includes('mobile') ||
+                 project.description.toLowerCase().includes('mobile') ||
+                 project.tags.some(tag => ['React Native', 'Flutter', 'iOS', 'Android'].includes(tag));
+        case 'ai':
+          // More specific AI/ML project detection
+          return project.tags.some(tag => 
+            ['AI', 'Machine Learning', 'ML', 'LLM', 'Neural Network', 'Deep Learning', 'NLP', 'Whisper AI', 'OpenAI'].includes(tag)
+          ) || 
+          project.title.toLowerCase().includes('ai ') || // Add space to avoid partial matches
+          project.title.toLowerCase().includes('ml ') ||
+          project.title.toLowerCase().includes('machine learning') ||
+          project.title.toLowerCase().includes('artificial intelligence');
+        case 'tools':
+          return project.title.toLowerCase().includes('tool') ||
+                 project.description.toLowerCase().includes('utility') ||
+                 project.tags.some(tag => ['Chrome Extension', 'CLI', 'Utility', 'Plugin', 'Extension'].includes(tag));
+        default:
+          return true;
+      }
+    })
+  }, [category])
+
   return (
     <>
       <SEO title="Projects - Stefan Anevski" />
@@ -338,13 +377,39 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {projects.featured.map((project) => (
-            <LazyLoad key={project.title}>
-              <ProjectCard project={project} />
-            </LazyLoad>
-          ))}
+        <div className="flex justify-center mb-8">
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value as FilterCategory)}
+            className="px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+          >
+            <option value="all">All Projects</option>
+            <option value="web">Web Applications</option>
+            <option value="mobile">Mobile Apps</option>
+            <option value="ai">AI & ML Projects</option>
+            <option value="tools">Tools & Utilities</option>
+          </select>
         </div>
+
+        {filteredProjects.length === 0 ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-12"
+          >
+            <p className="text-gray-600 dark:text-gray-400">
+              No projects found matching your criteria.
+            </p>
+          </motion.div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {filteredProjects.map((project) => (
+              <LazyLoad key={project.title}>
+                <ProjectCard project={project} />
+              </LazyLoad>
+            ))}
+          </div>
+        )}
       </section>
     </>
   )
